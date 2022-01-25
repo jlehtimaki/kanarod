@@ -17,7 +17,7 @@ settings: &settings
     from_secret: ca
   k8s_user: default
   actions: ["apply"]
-  kustomize: true
+  kustomize: false
 
 steps:
   - name: Build
@@ -35,7 +35,7 @@ steps:
     name: Deployment
     settings:
       <<: *settings
-      manifest_dir: k8s
+      manifest_dir: k8s-resources
       image_version: ${DRONE_COMMIT_SHA}
       image: quay.io/jlehtimaki/kanarod
       rollout_timeout: 5m

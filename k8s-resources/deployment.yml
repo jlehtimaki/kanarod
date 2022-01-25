@@ -21,6 +21,11 @@ spec:
           env:
             - name: API_PATH
               value: "http://toornament-csgo"
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: kanarod
+                  key: token
           resources:
             limits:
               cpu: "0.1"

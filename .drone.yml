@@ -28,8 +28,8 @@ steps:
         from_secret: username
       password:
         from_secret: password
-#      registry: ""
-      repo: "quay.io/jlehtimaki/kanarod"
+      registry: "quay.io"
+      repo: "jlehtimaki/kanarod"
       tags: ${DRONE_COMMIT_SHA}
   - <<: *defaults
     name: Deployment

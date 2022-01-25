@@ -1,9 +1,4 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kanarod
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,8 +16,8 @@ spec:
     spec:
       containers:
         - name: kanarod
-          image: local.registry/camunda-autoscaler:1.0.0
-          imagePullPolicy: Always
+          image: quay.io/jlehtimaki/kanarod
+          imagePullPolicy: IfNotPresent
           env:
             - name: API_PATH
               value: "http://toornament-csgo"

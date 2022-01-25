@@ -7,19 +7,18 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: camunda-autoscaler
-  namespace: default
+  name: kanarod
+  namespace: kanarod
 spec:
   selector:
     matchLabels:
-      app: camunda-autoscaler
+      app: kanarod
   replicas: 1
   template:
     metadata:
       labels:
-        app: camunda-autoscaler
+        app: kanarod
     spec:
-      serviceAccountName: camunda-autoscaler
       containers:
         - name: kanarod
           image: local.registry/camunda-autoscaler:1.0.0

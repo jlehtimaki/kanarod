@@ -24,8 +24,12 @@ steps:
     image: plugins/docker
     pull: if-not-exists
     settings:
-      registry: "registry2.registry.svc.cluster.local"
-      repo: "kanarod"
+      username:
+        from_secret: username
+      password:
+        from_secret: password
+      registry: "quay.io"
+      repo: "jlehtimaki/kanarod"
       tags: ${DRONE_COMMIT_SHA}
   - <<: *defaults
     name: Deployment
@@ -33,9 +37,8 @@ steps:
       <<: *settings
       manifest_dir: k8s
       image_version: ${DRONE_COMMIT_SHA}
-      image: registry2.registry.svc.cluster.local/kanarod
+      image: quay.io/jlehtimaki/kanarod
       rollout_timeout: 5m
-
 when:
   branch:
     - master

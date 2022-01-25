@@ -21,10 +21,11 @@ settings: &settings
 
 steps:
   - name: Build
-    image: plugins/docker
-    pull: always
+    image: plugins/kaniko
+    pull: if-not-exists
     settings:
-      repo: "registry2.registry.svc.cluster.local/kanarod"
+      registry: "registry2.registry.svc.cluster.local"
+      repo: "kanarod"
       tags: ${DRONE_COMMIT_SHA}
   - <<: *defaults
     name: Deployment

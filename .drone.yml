@@ -10,9 +10,9 @@ settings: &settings
   type: Baremetal
   kubectl_version: v1.20.2
   token:
-    from_secret: k8s_token
+    from_secret: token
   k8s_server:
-    from_secret: k8s_server
+    from_secret: server
   ca:
     from_secret: ca
   k8s_user: default

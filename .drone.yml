@@ -21,7 +21,7 @@ settings: &settings
 
 steps:
   - name: Build
-    image: plugins/kaniko
+    image: plugins/docker
     pull: if-not-exists
     settings:
       registry: "registry2.registry.svc.cluster.local"

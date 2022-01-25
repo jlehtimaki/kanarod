@@ -7,7 +7,7 @@ WORKDIR /build
 COPY . .
 RUN go build -o /build/kanarod
 
-FROM gcr.io/distroless/static
+FROM gcr.io/distroless/base-debian11
 
 ENV GOARCH=arm64
 

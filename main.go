@@ -10,8 +10,6 @@ import (
 	"syscall"
 )
 
-var token = "OTM0MDI2MzAwMzE2ODYwNDE2.YeqFxw.0mdKstmBjB1SnxWoRWCBc-sUMEw"
-
 func main() {
 	dBot := initDiscord()
 	initRest(&dBot)
@@ -43,14 +41,19 @@ func main() {
 }
 
 func initDiscord() discordBot {
+	token := os.Getenv("TOKEN")
+	if token == "" {
+		log.Fatal("could not find TOKEN environment variable")
+	}
 	session, err := discordgo.New("Bot " + token)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	db := discordBot{
-		s:  session,
-		mc: nil,
+		token: token,
+		s:     session,
+		mc:    nil,
 	}
 	return db
 }

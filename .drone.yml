@@ -17,7 +17,7 @@ settings: &settings
     from_secret: ca
   k8s_user: default
   actions: ["apply"]
-  kustomize: false
+  kustomize: true
 
 steps:
   - name: Build

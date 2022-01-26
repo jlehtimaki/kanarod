@@ -67,18 +67,34 @@ func (d *discordBot) messageCreate(s *discordgo.Session, m *discordgo.MessageCre
 	}
 	d.s = s
 	d.mc = m
-	// If the message is "ping" reply with "Pong!"
-	//if m.Content == "ping" {
-	//	s.ChannelMessageSend(m.ChannelID, "Pong!")
-	//}
-	//
-	//// If the message is "pong" reply with "Ping!"
-	//if m.Content == "pong" {
-	//	s.ChannelMessageSend(m.ChannelID, "Ping!")
-	//}
+
+	if strings.Contains(m.Content, "?help") {
+		log.Infof("user %s asked %s", m.Author, m.Content)
+		helpMessage := "**Help:** \n\n" +
+			"**?next-match** *team-name*		-		Vote for the day of teams next match\n" +
+			"**?vote** *custom-string*		-		Vote for the day of custom string\n" +
+			"**?team** *team-name*			-		Shows information about that team\n"
+		_, err := s.ChannelMessageSend(m.ChannelID, helpMessage)
+		if err != nil {
+			log.Error(err)
+		}
+	}
+
+	if strings.Contains(m.Content, "?next-match") {
+		log.Infof("user %s asked %s", m.Author, m.Content)
+		teamName := strings.Split(m.Content, "?next-match ")[1]
+		d.nextMatch(teamName)
+	}
+
 	if strings.Contains(m.Content, "?vote") {
 		log.Infof("user %s asked %s", m.Author, m.Content)
-		teamName := strings.Split(m.Content, "?vote ")[1]
-		d.voteDay(teamName)
+		customString := strings.Split(m.Content, "?vote ")[1]
+		d.vote(customString)
+	}
+
+	if strings.Contains(m.Content, "?team") {
+		log.Infof("user %s asked %s", m.Author, m.Content)
+		teamName := strings.Split(m.Content, "?team ")[1]
+		d.team(teamName)
 	}
 }

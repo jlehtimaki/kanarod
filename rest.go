@@ -31,6 +31,15 @@ func (d *discordBot) getNextOpponent(team string) (string, error) {
 	return data, nil
 }
 
+func (d *discordBot) getTeam(team string) (string, error) {
+	apiPath := fmt.Sprintf("%s/team/%s", d.apiPath, team)
+	data, err := restGet(apiPath)
+	if err != nil {
+		return "", err
+	}
+	return data, nil
+}
+
 func restGet(url string) (string, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)

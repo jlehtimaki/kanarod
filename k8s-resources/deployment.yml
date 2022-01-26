@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: API_PATH
-              value: "http://toornament-csgo"
+              value: "http://toornament-csgo:8080"
             - name: TOKEN
               valueFrom:
                 secretKeyRef:

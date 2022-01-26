@@ -77,6 +77,7 @@ func (d *discordBot) messageCreate(s *discordgo.Session, m *discordgo.MessageCre
 	//	s.ChannelMessageSend(m.ChannelID, "Ping!")
 	//}
 	if strings.Contains(m.Content, "?vote") {
+		log.Infof("user %s asked %s", m.Author, m.Content)
 		teamName := strings.Split(m.Content, "?vote ")[1]
 		d.voteDay(teamName)
 	}

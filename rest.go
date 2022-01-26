@@ -17,7 +17,9 @@ func initRest(db *discordBot) {
 	if db.apiPath == "" {
 		log.Infof("using the default API Path %s", defaultApiPath)
 		db.apiPath = defaultApiPath
+		return
 	}
+	log.Infof("using API_PATH: %s", db.apiPath)
 }
 
 func (d *discordBot) getNextOpponent(team string) (string, error) {

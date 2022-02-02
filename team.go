@@ -9,16 +9,23 @@ import (
 
 func (d *discordBot) team(teamName string) {
 	team := s.Team{}
+
+	// Create the userchannel
+	channel, err := d.s.UserChannelCreate(d.mc.Author.ID)
+	if err != nil {
+		log.Error(err)
+		return
+	}
 	data, err := d.getTeam(teamName)
 	if err != nil {
-		d.s.ChannelMessageSend(d.mc.ChannelID, "sorry could not get that for you")
+		d.s.ChannelMessageSend(channel.ID, "sorry could not get that for you")
 		log.Error(err)
 		return
 	}
 
 	err = json.Unmarshal([]byte(data), &team)
 	if err != nil {
-		d.s.ChannelMessageSend(d.mc.ChannelID, "sorry could not get that for you")
+		d.s.ChannelMessageSend(channel.ID, "sorry could not get that for you")
 		log.Error(err)
 		return
 	}
@@ -59,9 +66,9 @@ func (d *discordBot) team(teamName string) {
 		team.WorstMap.Name, team.WorstMap.WinRate,
 		playerString)
 
-	_, err = d.s.ChannelMessageSend(d.mc.ChannelID, teamString)
+	_, err = d.s.ChannelMessageSend(channel.ID, teamString)
 	if err != nil {
-		d.s.ChannelMessageSend(d.mc.ChannelID, "sorry could not get that for you")
+		d.s.ChannelMessageSend(channel.ID, "sorry could not get that for you")
 		log.Error(err)
 		return
 	}

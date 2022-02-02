@@ -28,7 +28,7 @@ func (d *discordBot) team(teamName string) {
 	for _, p := range team.Players {
 		pTmpString := fmt.Sprintf("\t**%s (%s)** \n"+
 			"\t\t Faceit:\n"+
-			"\t\t\t Rank/Elo/Most Player/Least Played/KD:\n"+
+			"\t\t\t Rank/Elo/Most Played/Least Played/KD:\n"+
 			"\t\t\t\t %d/%d/%s/%s/%s \n"+
 			"\t\t Esportal:\n"+
 			"\t\t\t Rank %d:\n"+

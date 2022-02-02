@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/bwmarrin/discordgo v0.23.2
-	github.com/jlehtimaki/toornament-csgo v0.0.1
+	github.com/jlehtimaki/toornament-csgo v0.0.5
 	github.com/sirupsen/logrus v1.8.1
 )
 

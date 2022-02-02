@@ -73,7 +73,8 @@ func (d *discordBot) messageCreate(s *discordgo.Session, m *discordgo.MessageCre
 		helpMessage := "**Help:** \n\n" +
 			"**?next-match** *team-name*		-		Vote for the day of teams next match\n" +
 			"**?vote** *custom-string*		-		Vote for the day of custom string\n" +
-			"**?team** *team-name*			-		Shows information about that team\n"
+			"**?team** *team-name*			-		Shows information about that team\n" +
+			"**?scheduled** *team-name*		-		Shows scheduled matches for that team\n"
 		_, err := s.ChannelMessageSend(m.ChannelID, helpMessage)
 		if err != nil {
 			log.Error(err)
@@ -96,5 +97,11 @@ func (d *discordBot) messageCreate(s *discordgo.Session, m *discordgo.MessageCre
 		log.Infof("user %s asked %s", m.Author, m.Content)
 		teamName := strings.Split(m.Content, "?team ")[1]
 		d.team(teamName)
+	}
+
+	if strings.Contains(m.Content, "?scheduled") {
+		log.Infof("user %s asked %s", m.Author, m.Content)
+		teamName := strings.Split(m.Content, "?scheduled ")[1]
+		d.scheduledMatches(teamName)
 	}
 }

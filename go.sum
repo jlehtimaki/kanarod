@@ -8,6 +8,12 @@ github.com/jlehtimaki/toornament-csgo v0.0.0-20220124205834-ad2a38c0f1ac h1:vHT4
 github.com/jlehtimaki/toornament-csgo v0.0.0-20220124205834-ad2a38c0f1ac/go.mod h1:hO1tXOVmpf6DIiFOTUDXIRiPcs0X09GRgCLfI5ZYi68=
 github.com/jlehtimaki/toornament-csgo v0.0.1 h1:rm+hmuxUVBukfeCpWyLgJV7NUagyTtDtjSiX4sARjes=
 github.com/jlehtimaki/toornament-csgo v0.0.1/go.mod h1:rSWHt/uNTEc00VHk12b2GveL7PxXaCBtXxPq6fpkn/0=
+github.com/jlehtimaki/toornament-csgo v0.0.2 h1:H4LFIM0d2lH95qyj2ffyY8wCyMJGxGtfq2YsHPLkyjo=
+github.com/jlehtimaki/toornament-csgo v0.0.2/go.mod h1:rSWHt/uNTEc00VHk12b2GveL7PxXaCBtXxPq6fpkn/0=
+github.com/jlehtimaki/toornament-csgo v0.0.3 h1:Iip+txEFhJmfzutb+nm+es4I9Z2U+dg6g5OvJB3hrPQ=
+github.com/jlehtimaki/toornament-csgo v0.0.3/go.mod h1:rSWHt/uNTEc00VHk12b2GveL7PxXaCBtXxPq6fpkn/0=
+github.com/jlehtimaki/toornament-csgo v0.0.5 h1:G6sf9V6Wt4eA9SGk1TR7rZucLa5gXMhBIlcoNFv1jbw=
+github.com/jlehtimaki/toornament-csgo v0.0.5/go.mod h1:rSWHt/uNTEc00VHk12b2GveL7PxXaCBtXxPq6fpkn/0=
 github.com/magefile/mage v1.10.0/go.mod h1:z5UZb/iS3GoOSn0JgWuiw7dxlurVYTu+/jHXqQg881A=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=

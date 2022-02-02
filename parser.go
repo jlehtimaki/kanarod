@@ -2,11 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/jlehtimaki/toornament-csgo/pkg/structs"
+	s "github.com/jlehtimaki/toornament-csgo/pkg/structs"
 )
 
-func (d *discordBot) voteDayInfo(t string) (structs.Team, error) {
-	team := structs.Team{}
+func (d *discordBot) voteDayInfo(t string) (s.Team, error) {
+	team := s.Team{}
 	data, err := d.getNextOpponent(t)
 	if err != nil {
 		return team, err

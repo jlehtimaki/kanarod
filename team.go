@@ -38,8 +38,8 @@ func (d *discordBot) team(teamName string) {
 			"\t\t\t Rank/Elo/Most Played/Least Played/KD:\n"+
 			"\t\t\t\t %d/%d/%s/%s/%s \n"+
 			"\t\t Esportal:\n"+
-			"\t\t\t Rank %d:\n"+
-			"\t\t MM Rank: %d\n"+
+			"\t\t\t Rank %s:\n"+
+			"\t\t MM Rank: %s\n"+
 			"\t\t Kanaliiga:\n"+
 			"\t\t\t Rating/ADR/Kills/Assists/Deaths\n"+
 			"\t\t\t\t %.2f/%.2f/%d/%d/%d \n",

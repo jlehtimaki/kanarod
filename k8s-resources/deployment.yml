@@ -26,6 +26,11 @@ spec:
                 secretKeyRef:
                   name: kanarod
                   key: token
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: access-token
+                  name: toornament-csgo
           resources:
             limits:
               cpu: "0.1"

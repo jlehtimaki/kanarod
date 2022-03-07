@@ -13,6 +13,10 @@ var (
 )
 
 func initRest(db *discordBot) {
+	db.accessToken = os.Getenv("ACCESS_TOKEN")
+	if db.accessToken == "" {
+		log.Fatal("could not find ACCESS_TOKEN environment variable")
+	}
 	db.apiPath = os.Getenv("API_PATH")
 	if db.apiPath == "" {
 		log.Infof("using the default API Path %s", defaultApiPath)
@@ -24,7 +28,7 @@ func initRest(db *discordBot) {
 
 func (d *discordBot) getNextOpponent(team string) (string, error) {
 	apiPath := fmt.Sprintf("%s/match/next/%s", d.apiPath, team)
-	data, err := restGet(apiPath)
+	data, err := d.restGet(apiPath)
 	if err != nil {
 		return "", err
 	}
@@ -33,16 +37,17 @@ func (d *discordBot) getNextOpponent(team string) (string, error) {
 
 func (d *discordBot) getTeam(team string) (string, error) {
 	apiPath := fmt.Sprintf("%s/team/%s", d.apiPath, team)
-	data, err := restGet(apiPath)
+	data, err := d.restGet(apiPath)
 	if err != nil {
 		return "", err
 	}
 	return data, nil
 }
 
-func restGet(url string) (string, error) {
+func (d *discordBot) restGet(url string) (string, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
+	req.Header.Set("Authorization", d.accessToken)
 	if err != nil {
 		return "", err
 	}

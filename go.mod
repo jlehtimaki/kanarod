@@ -1,10 +1,10 @@
-module kanarod-go
+module kanarod
 
 go 1.17
 
 require (
 	github.com/bwmarrin/discordgo v0.23.2
-	github.com/jlehtimaki/toornament-csgo v0.0.9
+	github.com/jlehtimaki/toornament-csgo v0.0.10-0.20220307072718-f076b988ecc9
 	github.com/sirupsen/logrus v1.8.1
 )
 

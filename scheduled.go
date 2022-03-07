@@ -12,7 +12,7 @@ func (d *discordBot) scheduledMatches(teamName string) {
 	returnString := fmt.Sprintf("**Scheduled matches for team** *%s*\n\n", teamName)
 
 	subPath := fmt.Sprintf("%s/match/scheduled/%s", d.apiPath, teamName)
-	data, err := restGet(subPath)
+	data, err := d.restGet(subPath)
 	if err != nil {
 		d.s.ChannelMessageSend(d.mc.ChannelID, "sorry could not get that for you")
 		log.Error(err)

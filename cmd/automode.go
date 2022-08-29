@@ -180,7 +180,7 @@ func (a *Automode) autoLogic() {
 
 		// Next Match notification
 		if !team.VoteSend {
-			if today.Weekday().String() == "Monday" {
+			if today.Weekday().String() == "Wednesday" {
 				voteDayMessage(team.NextMatch.Name, team.NextMatch.CustomFields.CaptainDiscord,
 					team.ChannelId, a.DiscordSession)
 			}

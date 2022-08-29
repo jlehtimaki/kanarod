@@ -38,6 +38,8 @@ spec:
                 secretKeyRef:
                   key: password
                   name: redis
+            - name: REDIS_PORT
+              value: "6379"
           resources:
             limits:
               cpu: "0.1"

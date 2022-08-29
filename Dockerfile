@@ -5,6 +5,7 @@ ENV GOARCH=arm64
 
 WORKDIR /build
 COPY cmd/ .
+COPY go.mod .
 RUN go build -o /build/kanarod
 
 FROM gcr.io/distroless/base-debian11

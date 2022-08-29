@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: k8s.gcr.io/redis # or just image: redis
+          image: arm64v8/redis
           resources:
             requests:
               cpu: 10m

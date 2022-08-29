@@ -17,7 +17,7 @@ func (d *discordBot) team(teamName string) {
 		log.Error(err)
 		return
 	}
-	data, err := d.getTeam(teamName)
+	data, err := d.rest.getTeam(teamName)
 	if err != nil {
 		d.s.ChannelMessageSend(channel.ID, "sorry could not get that for you")
 		log.Error(err)

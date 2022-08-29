@@ -8,4 +8,6 @@ type discordBot struct {
 	s           *discordgo.Session
 	mc          *discordgo.MessageCreate
 	apiPath     string
+	autoMode    Automode
+	rest        Rest
 }

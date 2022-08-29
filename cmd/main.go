@@ -12,7 +12,7 @@ import (
 
 func main() {
 	dBot := initDiscord()
-	initRest(&dBot)
+	dBot.rest = initRest()
 
 	// Register the messageCreate func as a callback for MessageCreate events.
 	dBot.s.AddHandler(dBot.messageCreate)
@@ -28,7 +28,10 @@ func main() {
 	}
 
 	// Wait here until CTRL-C or other term signal is received.
-	fmt.Println("Bot is now running.  Press CTRL-C to exit.")
+	log.Info("Bot is now running.  Press CTRL-C to exit.")
+
+	log.Info("Starting automation process")
+	go dBot.autoMode.start()
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-sc
@@ -50,10 +53,16 @@ func initDiscord() discordBot {
 		log.Fatal(err)
 	}
 
+	autoMode, err := automodeInit(session)
+	if err != nil {
+		log.Error(err)
+	}
+
 	db := discordBot{
-		token: token,
-		s:     session,
-		mc:    nil,
+		token:    token,
+		s:        session,
+		mc:       nil,
+		autoMode: autoMode,
 	}
 	return db
 }
@@ -74,7 +83,10 @@ func (d *discordBot) messageCreate(s *discordgo.Session, m *discordgo.MessageCre
 			"**?next-match** *team-name*		-		Vote for the day of teams next match\n" +
 			"**?vote** *custom-string*		-		Vote for the day of custom string\n" +
 			"**?team** *team-name*			-		Shows information about that team\n" +
-			"**?scheduled** *team-name*		-		Shows scheduled matches for that team\n"
+			"**?scheduled** *team-name*		-		Shows scheduled matches for that team\n" +
+			"**?enable *team-name*			-		Automatically notify of match day, next match, results etc.. on the" +
+			"channel where this was automated" +
+			"**?disable *team-name*			-		Disable the auto feature for team"
 		_, err := s.ChannelMessageSend(m.ChannelID, helpMessage)
 		if err != nil {
 			log.Error(err)
@@ -103,5 +115,17 @@ func (d *discordBot) messageCreate(s *discordgo.Session, m *discordgo.MessageCre
 		log.Infof("user %s asked %s", m.Author, m.Content)
 		teamName := strings.Split(m.Content, "?scheduled ")[1]
 		d.scheduledMatches(teamName)
+	}
+
+	if strings.Contains(m.Content, "?enable") {
+		log.Infof("user %s asked %s", m.Author, m.Content)
+		teamName := strings.Split(m.Content, "?enable ")[1]
+		d.autoMode.addTeam(teamName, d.mc.ChannelID)
+	}
+
+	if strings.Contains(m.Content, "?disable") {
+		log.Infof("user %s asked %s", m.Author, m.Content)
+		teamName := strings.Split(m.Content, "?disable ")[1]
+		d.autoMode.removeTeam(teamName, d.mc.ChannelID)
 	}
 }

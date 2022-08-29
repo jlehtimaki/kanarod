@@ -31,6 +31,13 @@ spec:
                 secretKeyRef:
                   key: access-token
                   name: toornament-csgo
+            - name: REDIS_ADDRESS
+              value: redis
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: redis
           resources:
             limits:
               cpu: "0.1"

@@ -7,7 +7,7 @@ import (
 
 func (d *discordBot) voteDayInfo(t string) (s.Team, error) {
 	team := s.Team{}
-	data, err := d.getNextOpponent(t)
+	data, err := d.rest.getNextOpponent(t)
 	if err != nil {
 		return team, err
 	}

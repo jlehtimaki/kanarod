@@ -54,7 +54,6 @@ func (a *Automode) start() {
 	for {
 		select {
 		case <-ticker.C:
-			fmt.Println("it's automating")
 			a.autoLogic()
 		case <-quit:
 			ticker.Stop()
